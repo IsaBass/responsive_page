@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:responsividade_page/breakpoints.dart';
-import 'package:responsividade_page/pages/home/widgets/appbar/mobile_appbar.dart';
-import 'package:responsividade_page/pages/home/widgets/appbar/web_appbar.dart';
+
+import 'widgets/appbar/mobile_appbar.dart';
+import 'widgets/appbar/web_appbar.dart';
+import 'widgets/topsection/top_section.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) {
+      //
+      bool isMobile = constraint.maxWidth < mobileBreakpoint;
+      //
       return Scaffold(
-          appBar: constraint.maxWidth < mobileBreakpoint
-              ? PreferredSize(
-                  child: MobileAppBar(),
-                  preferredSize: Size(double.infinity, 56))
-              : PreferredSize(
-                  child: WebAppBar(), preferredSize: Size(double.infinity, 72)),
-          drawer: constraint.maxWidth >= mobileBreakpoint
+          appBar: PreferredSize(
+            child: isMobile ? MobileAppBar() : WebAppBar(),
+            preferredSize: Size(double.infinity, isMobile ? 56 : 72),
+          ),
+          drawer: !isMobile
               ? null
               : Drawer(
                   child: Align(
@@ -23,18 +26,11 @@ class MyHomePage extends StatelessWidget {
                 ),
           body: Align(
             alignment: Alignment.center,
-            child: Container(
-              width: constraint.maxWidth / 4,
-              color: Colors.grey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: Mai,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 1400),
+              child: ListView(
                 children: [
-                  LayoutBuilder(builder: (ctx, constra) {
-                    return Text(
-                        "Este quadrado:\n" + constra.biggest.toString());
-                  }),
-                  Text("TELA INTEIRA:\n" + constraint.biggest.toString()),
+                  TopSection(),
                 ],
               ),
             ),
