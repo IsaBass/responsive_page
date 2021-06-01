@@ -52,7 +52,7 @@ class TopSection extends StatelessWidget {
 
       if (maxWidth >= mobileBreakpoint) {
         return SizedBox(
-          height: 320,
+          height: 280,
           child: Stack(
             children: [
               SizedBox(
@@ -61,8 +61,8 @@ class TopSection extends StatelessWidget {
                 child: _image(),
               ),
               Positioned(
-                left: 50,
-                top: 50,
+                left: 40,
+                top: 40,
                 child: Card(
                   color: Colors.black,
                   elevation: 8,
@@ -95,7 +95,33 @@ class TopSection extends StatelessWidget {
         );
       }
 
-      return Container(child: _imageAspectRatio());
+      return Column(
+        children: [
+          _imageAspectRatio(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Aprenda Flutter com este curso",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Bora aprender Flutter com este curso do prof. Daniel Ciolfi por apenas XX R\$. Qualidade Garantida.",
+                  style: TextStyle(fontSize: 14),
+                ),
+                const SizedBox(height: 10),
+                CustomSearchField(),
+              ],
+            ),
+          ),
+        ],
+      );
     });
   }
 
