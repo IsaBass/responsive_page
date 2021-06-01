@@ -4,7 +4,8 @@ import 'package:responsividade_page/breakpoints.dart';
 import 'widgets/appbar/mobile_appbar.dart';
 import 'widgets/appbar/web_appbar.dart';
 import 'widgets/sections/advantage_section.dart';
-import 'widgets/sections/topsection/top_section.dart';
+import 'widgets/sections/courses_section.dart';
+import 'widgets/sections/top_section.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
@@ -33,6 +34,7 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   TopSection(),
                   AdvantageSection(),
+                  CoursesSection(),
                 ],
               ),
             ),
